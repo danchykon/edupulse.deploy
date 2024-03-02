@@ -1,0 +1,14 @@
+http:
+  routers:
+    minio-console:
+      service: minio-console
+      entryPoints:
+        - websecure
+      rule: Host(`minio.{{ env "HOST" }}`)
+      tls: 
+        certresolver: resolver
+  services:
+    minio-console:
+      loadBalancer:
+        servers:
+          - url: http://minio:9001

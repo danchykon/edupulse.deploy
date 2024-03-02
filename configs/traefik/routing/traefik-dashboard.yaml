@@ -1,0 +1,9 @@
+http:
+  routers:
+    traefik-dashboard:
+      service: api@internal
+      entryPoints:
+        - websecure
+      rule: Host(`traefik.{{ env "HOST" }}`)
+      tls: 
+        certresolver: resolver

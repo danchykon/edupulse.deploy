@@ -1,0 +1,21 @@
+http:
+  routers:
+    minio:
+      service: minio
+      entryPoints:
+        - websecure
+      rule: PathPrefix(`/static`)
+      tls: 
+        certresolver: resolver
+      middlewares:
+        - compress
+        - minio-strip-prefix
+  services:
+    minio:
+      loadBalancer:
+        servers:
+          - url: http://minio:9000
+  middlewares:
+    minio-strip-prefix:
+      stripprefix:
+        prefixes: /static

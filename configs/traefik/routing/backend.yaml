@@ -1,0 +1,20 @@
+http:
+  routers:
+    backend:
+      service: backend
+      entryPoints:
+        - websecure
+      rule: Host(`{{ env "HOST" }}`) && PathPrefix(`/backend`)
+      tls: 
+        certresolver: resolver
+      middlewares:
+        - backend-strip-prefix
+  services:
+    backend:
+      loadBalancer:
+        servers:
+          - url: http://backend:5000
+  middlewares:
+    backend-strip-prefix:
+      stripprefix:
+        prefixes: /backend

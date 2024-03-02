@@ -1,0 +1,33 @@
+{
+    "log_level": "debug",
+    "allowed_origins": ["*"],
+    "allow_subscribe_for_client": true, 
+    "allow_subscribe_for_anonymous": true,
+    "allow_anonymous_connect_without_token": true,
+    "namespaces": [
+      {
+        "name": "public"
+      }
+    ],
+    "admin": true,
+    "admin_password": "centrifugoedupulse",
+    "admin_secret": "centrifugoedupulse",
+    "engine": "redis",
+    "redis_address": "redis:6379",
+    "redis_user": "redisedupulse",
+    "redis_password": "redisedupulse",
+    "consumers": [
+        {
+          "name": "postgresql_consumer",
+          "type": "postgresql",
+          "postgresql": {
+            "dsn": "postgresql://postgresedupulse:postgresedupulse@postgres:5432/edupulse",
+            "outbox_table_name": "centrifugo_outbox",
+            "num_partitions": 1,
+            "partition_select_limit": 100,
+            "partition_poll_interval": "800ms",
+            "partition_notification_channel": "centrifugo_partition_change"
+          }
+        }
+      ]
+}

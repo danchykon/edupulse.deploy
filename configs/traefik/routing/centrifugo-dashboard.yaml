@@ -1,0 +1,14 @@
+http:
+  routers:
+    centrifugo-dashboard:
+      service: centrifugo-dashboard
+      entryPoints:
+        - websecure
+      rule: Host(`centrifugo.{{ env "HOST" }}`)
+      tls: 
+        certresolver: resolver
+  services:
+    centrifugo-dashboard:
+      loadBalancer:
+        servers:
+          - url: http://centrifugo:8000
