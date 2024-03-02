@@ -13,7 +13,7 @@ http:
     backend:
       loadBalancer:
         servers:
-          - url: http://backend:5000
+          - url: http://backend:5001
   middlewares:
     backend-strip-prefix:
       stripprefix:

@@ -16,36 +16,36 @@ services:
       - ./configs/traefik/traefik.yaml:/etc/traefik/traefik.yaml:ro
       - ./configs/traefik/routing:/etc/traefik/routing:ro
 
-  # backend:
-  #   build:
-  #      context: backend
-  #      dockerfile: Dockerfile
-  #   image: backend  
-  #   container_name: backend
-  #   hostname: backend
-  #   networks:
-  #     - private
-  #     - public
-  #   ports:
-  #     - 5000:5000
-  #   environment:
-  #     ASPNETCORE_ENVIRONMENT: Development
-  #     ASPNETCORE_URLS: http://+:5000/
-  #     Swagger__RoutePrefix: swagger
-  #     Swagger__Endpoints__0__Url: https://$HOST/backend/swagger/v1/swagger.json
-  #     Swagger__Endpoints__0__Name: swagger api
-  #     Swagger__ServersUrls__0: https://$HOST/backend
-  #     Minio__Endpoint: minio:9000
-  #     Minio__AccessKey: $MINIO_ROOT_USER
-  #     Minio__SecretKey: $MINIO_ROOT_PASSWORD
-  #     Minio__PublicUrl: https://$HOST/static
-  #     JsonWebToken__JsonWebKey: /etc/backend/jwk.json
-  #     ConnectionStrings__Postgres: Server=postgres;Port=5432;Database=edupulse;Username=$POSTGRES_USER;Password=$POSTGRES_PASSWORD;
-  #    volumes:
-  #     - ./backend/jwk.json:/etc/backend/jwk.json:ro
-  #   depends_on:
-  #     postgres:
-  #       condition: service_healthy
+  backend:
+    build:
+       context: backend
+       dockerfile: Dockerfile
+    image: backend  
+    container_name: backend
+    hostname: backend
+    networks:
+      - private
+      - public
+    ports:
+      - 5001:5001
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      ASPNETCORE_URLS: http://+:5001/
+      Swagger__RoutePrefix: swagger
+      Swagger__Endpoints__0__Url: https://$HOST/backend/swagger/v1/swagger.json
+      Swagger__Endpoints__0__Name: swagger api
+      Swagger__ServersUrls__0: https://$HOST/backend
+      Minio__Endpoint: minio:9000
+      Minio__AccessKey: $MINIO_ROOT_USER
+      Minio__SecretKey: $MINIO_ROOT_PASSWORD
+      Minio__PublicUrl: https://$HOST/static
+      JsonWebToken__JsonWebKey: /etc/backend/jwk.json
+      ConnectionStrings__Postgres: Server=postgres;Port=5432;Database=edupulse;Username=$POSTGRES_USER;Password=$POSTGRES_PASSWORD;
+    volumes:
+      - ./backend/jwk.json:/etc/backend/jwk.json:ro
+    depends_on:
+      postgres:
+        condition: service_healthy
 
   postgres:
     image: postgres:16.1-alpine
