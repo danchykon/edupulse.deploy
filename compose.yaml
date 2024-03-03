@@ -15,6 +15,16 @@ services:
       - traefik_data:/etc/traefik/acme
       - ./configs/traefik/traefik.yaml:/etc/traefik/traefik.yaml:ro
       - ./configs/traefik/routing:/etc/traefik/routing:ro
+  
+  frontend:
+    build:
+       context: frontend
+       dockerfile: Dockerfile
+    image: frontend  
+    container_name: frontend
+    hostname: frontend
+    networks:
+      - public
 
   backend:
     build:
