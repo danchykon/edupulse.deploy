@@ -23,6 +23,8 @@ services:
     image: frontend  
     container_name: frontend
     hostname: frontend
+    ports:
+      - 4040:80
     networks:
       - public
 
