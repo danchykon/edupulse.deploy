@@ -37,6 +37,8 @@ Centrifugo канали:
 
 Використаний [smtp4dev](https://github.com/rnwood/smtp4dev) для відправлення електронних листів
 
+За допомогою Quartz реалізований механізм запланованої розсилки електронних листів, відкриття та закриття завдання
+
 ---
 
 Проєкт запущений за на віртуальній машині в AWS хмарі за допомогою сервісу [EC2](https://aws.amazon.com/ec2/)
@@ -45,6 +47,7 @@ Centrifugo канали:
 [Minio console](https://minio.jwp-team.com/) \
 [Smtp4dev](https://smtp4dev.jwp-team.com/) \
 [Backend swagger](https://jwp-team.com/backend/swagger/index.html) \
+[Backend banana cake pop](https://jwp-team.com/backend/graphql/) \
 [Centrifugo dashboard](https://centrifugo.jwp-team.com/) \
 [Frontend](https://jwp-team.com/) 
 
@@ -53,6 +56,12 @@ Centrifugo api - https://jwp-team.com/centrifugo/ \
 Minio api - https://jwp-team.com/static/
 
 ## 🚀 Запуск
+
+Клонування репозиторія 
+
+```sh
+git clone https://github.com/Danchikon/edupulse.deploy.git --recurse-submodules
+```
 
 Потрібно встановити [docker compose]() та [docker]()
 ```sh
