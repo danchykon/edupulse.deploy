@@ -1,0 +1,14 @@
+http:
+  routers:
+    frontend:
+      service: frontend
+      entryPoints:
+        - websecure
+      rule: Host(`{{ env "HOST" }}`)
+      tls: 
+        certresolver: resolver
+  services:
+    frontend:
+      loadBalancer:
+        servers:
+          - url: http://frontend:80
