@@ -39,10 +39,10 @@ jobs:
         ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
         IMAGE_TAG: ${{ github.sha }}
       run: |
-        docker build -t $ECR_REGISTRY/$FRONTEND_ECR_REPOSITORY:latest ./frontend/Dockerfile
+        docker build -t $ECR_REGISTRY/$FRONTEND_ECR_REPOSITORY:latest frontend/Dockerfile
         docker push $ECR_REGISTRY/$FRONTEND_ECR_REPOSITORY:latest
         echo "image=$ECR_REGISTRY/$FRONTEND_ECR_REPOSITORY:latest" >> $GITHUB_OUTPUT
-        docker build -t $ECR_REGISTRY/$BACKEND_ECR_REPOSITORY:latest ./backend/Dockerfile
+        docker build -t $ECR_REGISTRY/$BACKEND_ECR_REPOSITORY:latest backend/Dockerfile
         docker push $ECR_REGISTRY/$BACKEND_ECR_REPOSITORY:latest
         echo "image=$ECR_REGISTRY/$BACKEND_ECR_REPOSITORY:latest" >> $GITHUB_OUTPUT
 
