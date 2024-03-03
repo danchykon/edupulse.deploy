@@ -42,7 +42,7 @@ jobs:
         docker build -t $ECR_REGISTRY/$FRONTEND_ECR_REPOSITORY:latest https://github.com/nodari-dev/int20h-edu-network.git#master
         docker push $ECR_REGISTRY/$FRONTEND_ECR_REPOSITORY:latest
         echo "image=$ECR_REGISTRY/$FRONTEND_ECR_REPOSITORY:latest" >> $GITHUB_OUTPUT
-        docker build -t $ECR_REGISTRY/$BACKEND_ECR_REPOSITORY:latest .https://github.com/Danchikon/edupulse.backend.git#main
+        docker build -t $ECR_REGISTRY/$BACKEND_ECR_REPOSITORY:latest https://github.com/Danchikon/edupulse.backend.git#main
         docker push $ECR_REGISTRY/$BACKEND_ECR_REPOSITORY:latest
         echo "image=$ECR_REGISTRY/$BACKEND_ECR_REPOSITORY:latest" >> $GITHUB_OUTPUT
 
