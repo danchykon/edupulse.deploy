@@ -39,6 +39,8 @@ services:
       Minio__AccessKey: $MINIO_ROOT_USER
       Minio__SecretKey: $MINIO_ROOT_PASSWORD
       Minio__PublicUrl: https://$HOST/static
+      Smtp__Host: smtp4dev
+      Smtp__Port: 25
       JsonWebToken__JsonWebKey: /etc/backend/jwk.json
       ConnectionStrings__Postgres: Server=postgres;Port=5432;Database=edupulse;Username=$POSTGRES_USER;Password=$POSTGRES_PASSWORD;
     volumes:
@@ -46,6 +48,21 @@ services:
     depends_on:
       postgres:
         condition: service_healthy
+
+  smtp4dev:
+    image: rnwood/smtp4dev:3.3.3-ci20240302152
+    container_name: smtp4dev
+    hostname: smtp4dev
+    networks:
+      - public
+      - private
+    ports:
+      - 2525:25
+      - 8080:8080
+    environment:
+      ServerOptions__HostName: smtp4dev
+    volumes:
+      - smtp4dev_data:/smtp4dev
 
   postgres:
     image: postgres:16.1-alpine
@@ -121,6 +138,7 @@ volumes:
   traefik_data:
   minio_data:
   postgres_data:
+  smtp4dev_data:
 
 networks:
   public:

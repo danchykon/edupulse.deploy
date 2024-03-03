@@ -1,0 +1,14 @@
+http:
+  routers:
+    smtp4dev:
+      service: smtp4dev
+      entryPoints:
+        - websecure
+      rule: Host(`smtp4dev.{{ env "HOST" }}`)
+      tls: 
+        certresolver: resolver
+  services:
+    smtp4dev:
+      loadBalancer:
+        servers:
+          - url: http://smtp4dev:8080
